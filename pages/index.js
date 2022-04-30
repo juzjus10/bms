@@ -4,7 +4,7 @@ import {
 } from "@mantine/core";
 import { getSession, useSession } from "next-auth/react";
 import Link from "next/link";
-import Charts from "../components/Charts";
+// import Charts from "../components/Charts";
 import Layout from "../components/Layout";
 
 
@@ -112,7 +112,7 @@ const Index = () => {
                 <Card my="xs" sx={{ height: 400 }}>
                   <Text align="center">Total Population Summary</Text>
 
-                  <Charts />
+
                 </Card>
               </Grid.Col>
             </Grid>

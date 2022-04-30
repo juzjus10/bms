@@ -11,24 +11,32 @@ import {
   import AddRecordButton from "../components/table/addRecordButton";
   import DeleteRecordButton from "../components/table/deleteRecordButton";
   import EditRecordButton from "../components/table/editRecordButton";
-  import { TableInquiries } from "../components/TableInquiries";
+  import { TableActivity } from "../components/TableActivity";
   
   const columns = [
     {
-      name: <th> Purpose </th>,
-      cell: (row) => row.purpose,
+      name: <th> What </th>,
+      cell: (row) => row.what,
     },
     {
-      name: <th> Report </th>,
-      cell: (row) => row.report,
+      name: <th> Where </th>,
+      cell: (row) => row.where,
     },
     {
-      name: <th> Type </th>,
-      cell: (row) => row.type,
+      name: <th> When </th>,
+      cell: (row) => row.when,
     },
     {
-      name: <th> Inquired Date </th>,
-      cell: (row) => moment(row.dateInquired).format('MMMM Do YYYY, h:mm:ss a'),
+      name: <th> Why </th>,
+      cell: (row) => row.why,
+    },
+    {
+      name: <th> Who </th>,
+      cell: (row) => row.who,
+    },
+    {
+      name: <th> How </th>,
+      cell: (row) => row.how,
     },
     {
       name: <th> Status </th>,
@@ -40,14 +48,14 @@ import {
     },
   ];
   
-  const Inquiries = () => {
+  const ActivityRecords = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const [inquiry, setInquiry] = useState([]);
+    const [activity, setActivity] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [toggleCleared, setToggleCleared] = useState(false);
   
     const { data: session } = useSession();
-    const { data, error } = useSWR("/api/inquiries/getInquiries", fetcher, {
+    const { data, error } = useSWR("/api/activity/getActivity", fetcher, {
       refreshInterval: 500,
     });
     if (error) return <div>Failed to load</div>;
@@ -72,23 +80,23 @@ import {
             <Grid mt={12}>
               <Grid.Col span={12}>
                 <Card>
-                  <Title mb={6} >Inquiries</Title>
+                  <Title mb={6} >Activity Records</Title>
                  
                   <Group> 
                   <AddRecordButton />
                   <DeleteRecordButton
                     selectedRows={selectedRows}
                     data={data}
-                    setData={setInquiry}
+                    setData={setActivity}
                     setSelectedRows={setSelectedRows}
                     toggleCleared={toggleCleared}
                     setToggleCleared={setToggleCleared}
                   />
                   </Group>
                   
-                  <TableInquiries
+                  <TableActivity
                     data={data}
-                    setData={setInquiry}
+                    setData={setActivity}
                     columns={columns}
                     setSelectedRows={setSelectedRows}
                     toggleCleared={toggleCleared}
@@ -103,7 +111,7 @@ import {
     );
   };
   
-  export default Inquiries;
+  export default ActivityRecords;
   
   export async function getServerSideProps(context) {
     const session = await getSession(context);

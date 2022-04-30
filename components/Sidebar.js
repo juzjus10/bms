@@ -82,7 +82,7 @@ const data = [
   { link: '/residentrecords', label: 'Residents Records', icon: Users },
   { link: '/blotterrecords', label: 'Blotter Records', icon: Notes },
   { link: '/certificates', label: 'Certificates', icon: Certificate },
-  { link: '/activity', label: 'Activity', icon: Activity },
+  { link: '/activity', label: 'Activities', icon: Activity },
   { link: '/inquiries', label: 'Inquiries', icon: QuestionMark }, 
 ];
 

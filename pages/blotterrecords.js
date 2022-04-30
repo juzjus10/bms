@@ -15,30 +15,12 @@ import {
   
   const columns = [
     {
-      name: <Text> Name </Text>,
-      cell: (row) => row.firstname + " " + row.middlename + " " + row.lastname,
+      name: <Text> Date Recorded </Text>,
+      cell: (row) => row.dateRecord,
     },
     {
-      name: <Text> Age </Text>,
-      cell: (row) => {
-        const now = moment();
-        const birth = moment(row.birthdate);
-        const diff = now.diff(birth, "years");
-        return diff;
-      },
-      // cell: (row) => moment(row.birthdate).format('YYYY-MM-DD'),
-    },
-    {
-      name: <Text> Gender </Text>,
-      cell: (row) => row.gender,
-    },
-    {
-      name: <Text> Address </Text>,
-      cell: (row) => row.address,
-    },
-    {
-      name: <Text> Residency Date </Text>,
-      cell: (row) => moment(row.residencyDate).format("MM-DD-YYYY"),
+      name: <Text> Status </Text>,
+      cell: (row) => row.status,
     },
     {
       name: <Text> Action </Text>,
@@ -48,12 +30,12 @@ import {
   
   const BlotterRecords = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const [resident, setResident] = useState([]);
+    const [blotters, setBlotters] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [toggleCleared, setToggleCleared] = useState(false);
   
     const { data: session } = useSession();
-    const { data, error } = useSWR("/api/resident/getResidents", fetcher, {
+    const { data, error } = useSWR("/api/blotter/getBlotter", fetcher, {
       refreshInterval: 500,
     });
     if (error) return <div>Failed to load</div>;
@@ -85,7 +67,7 @@ import {
                   <DeleteRecordButton
                     selectedRows={selectedRows}
                     data={data}
-                    setData={setResident}
+                    setData={setBlotters}
                     setSelectedRows={setSelectedRows}
                     toggleCleared={toggleCleared}
                     setToggleCleared={setToggleCleared}
@@ -94,7 +76,7 @@ import {
                   
                   <TableBlotter
                     data={data}
-                    setData={setResident}
+                    setData={setBlotters}
                     columns={columns}
                     setSelectedRows={setSelectedRows}
                     toggleCleared={toggleCleared}

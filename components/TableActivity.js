@@ -18,7 +18,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
   </>
 );
 
-export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, setToggleCleared }) {
+export function TableActivity({ data, columns, toggleCleared, setSelectedRows, setToggleCleared }) {
   const { colorScheme } = useMantineColorScheme();
   const [filterText, setFilterText] = React.useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
@@ -26,7 +26,7 @@ export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, se
 
 
   const filteredItems = data.filter(
-    item => item.dateRecord && item.dateRecord.toLowerCase().includes(filterText.toLowerCase()),
+    item => item.status && item.status.toLowerCase().includes(filterText.toLowerCase()),
   );
   const handleRowSelected = useCallback(state => {
     setSelectedRows(state.selectedRows);

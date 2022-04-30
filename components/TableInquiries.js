@@ -1,9 +1,17 @@
+import React, { useState, useMemo } from "react";
 import {
-    ActionIcon, Group, TextInput, useMantineColorScheme, Checkbox 
+  TextInput,
+  Text,
+  Button,
+  useMantineColorScheme,
+  Group,
+  Modal,
+  ActionIcon,
+  Checkbox
 } from "@mantine/core";
-import React, { useCallback, useMemo, useState } from "react";
+import { Search, RotateClockwise, Check } from "tabler-icons-react";
 import DataTable, { createTheme } from "react-data-table-component";
-import { RotateClockwise, Search } from "tabler-icons-react";
+import { useCallback } from "react";
 
 
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
@@ -18,7 +26,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
   </>
 );
 
-export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, setToggleCleared }) {
+export function TableInquiries({ data, columns, toggleCleared, setSelectedRows, setToggleCleared }) {
   const { colorScheme } = useMantineColorScheme();
   const [filterText, setFilterText] = React.useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
@@ -26,7 +34,7 @@ export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, se
 
 
   const filteredItems = data.filter(
-    item => item.dateRecord && item.dateRecord.toLowerCase().includes(filterText.toLowerCase()),
+    item => item.dateInquired && item.dateInquired.toLowerCase().includes(filterText.toLowerCase()),
   );
   const handleRowSelected = useCallback(state => {
     setSelectedRows(state.selectedRows);
@@ -45,7 +53,7 @@ export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, se
     );
   }, [filterText, resetPaginationToggle]);
 
-
+  console.log(colorScheme);
   createTheme("theme", {
     text: {
       primary: colorScheme,
@@ -55,17 +63,23 @@ export function TableBlotter({ data, columns, toggleCleared, setSelectedRows, se
       default: colorScheme,
     },
     sortFocus: {
-      default: colorScheme === "light" ? "#00000" : "#ffffff",
+      default: colorScheme === "dark" ? "#00000" : "#ffffff",
     },
     divider: {
-      default: colorScheme === "light" ? "#e9ecef" : "#373A40",
+      default: colorScheme === "dark" ? "#e9ecef" : "#373a40"
     },
   });
 
 
   return (
     <>
-      <Group position="right" mb={10}>  
+      <Group position="right" mb={10}>
+
+        
+       
+      
+
+       
       </Group>
 
       <DataTable

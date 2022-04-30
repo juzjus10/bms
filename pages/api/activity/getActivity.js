@@ -10,18 +10,18 @@ export default async (req, res) => {
     }
     const client = await clientPromise;
     const db = client.db("barangayDB");
-    const collection = db.collection("documents");
+    const collection = db.collection("activies");
     // filter document with active status 
-    const certificate = await collection.find({ status: "active" }).toArray();
+    const activity = await collection.find({ status: "active" }).toArray();
     // If there is error, return error message
-    if (certificate.length === 0) {
+    if (activity.length === 0) {
         res.statusCode = 404;
-        res.json({ message: "No Certificate record found." });
+        res.json({ message: "No Activity record found." });
         return;
     }
     // If there is no error, return the data
     res.statusCode = 200;
-    return res.json(certificate);
+    return res.json(activity);
 
    
 
