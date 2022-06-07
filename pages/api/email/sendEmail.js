@@ -8,13 +8,14 @@ export default async (req, res) => {
     res.json({ message: "You are not signed in." });
     return;
   }
+  
   // Handle POST request
   if (req.method === "POST") {
     var transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: "yahoo",
       auth: {
-        user: "juzzteezy@gmail.com",
-        pass: "094682Juzz",
+        user: "christerrambuyon12@gmail.com",
+        pass: "Masteroffire07!",
       },
     });
 
@@ -41,15 +42,14 @@ export default async (req, res) => {
 
 export async function sendEmail (to, subject) {
   var transporter = nodemailer.createTransport({
-    service: "gmail",
+     service: 'gmail',
     auth: {
-      user: "juzzteezy@gmail.com",
-      pass: "094682Juzz",
+      user: "christerrambuyon12@gmail.com",
+      pass: "fhgmliiybgpapahv",
     },
   });
 
   var mailOptions = {
-    from: "juzzteezy@gmail.com",
     to: to,
     subject: subject,
     html: { path: "public/emailtemplate.html" },
